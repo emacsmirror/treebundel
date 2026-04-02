@@ -255,7 +255,7 @@ ARGS are the arguments passed to git."
   (declare (indent defun))
   `(with-temp-buffer
      (treebundel--gitlog 'command (string-join (list ,@args) " "))
-     (let ((result (vc-git--call t ,@args))
+     (let ((result (vc-git-command nil nil nil ,@args))
            (output (string-trim-right (buffer-string))))
        (treebundel--gitlog 'output (string-replace "%" "%%" output))
        (when (> result 0)
