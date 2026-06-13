@@ -1,6 +1,6 @@
 ;;; treebundel.el --- Bundle related git-worktrees together -*- lexical-binding: t; -*-
 
-;; Package-Requires: ((emacs "27.1") (compat "29.1.4.2"))
+;; Package-Requires: ((emacs "29.1"))
 ;; Version: 0.3.0
 ;; Author: Ben Whitley
 ;; Homepage: https://github.com/purplg/treebundel
@@ -119,7 +119,6 @@
 
 ;;; Code:
 (require 'subr-x)
-(require 'compat)
 (require 'vc-git)
 
 
@@ -428,7 +427,7 @@ strings, only check these local branches."
 (defun treebundel-current-workspace (&optional file-path)
   "Return the name of the current workspace.
 If FILE-PATH is non-nil, use the current buffer instead."
-  (when-let ((file-path (or (and file-path (expand-file-name file-path))
+  (when-let* ((file-path (or (and file-path (expand-file-name file-path))
                             default-directory)))
     (let ((workspace nil))
       ;; Traverse up parent directories until the workspace root is all that remains
